@@ -52,7 +52,9 @@ def find_working():
         if values['read_0_q_max'] < 0.5 and values['read_1_qb_max'] < 0.5 and values['write_0_min_write'] < 0.1 and values['write_1_max_write'] > 1.7:
             working[key] = values
     print("Tried: " + str(len(data)) + " Working: " + str(len(working)))
-
+    for item in working:
+        print(item)
+        print(working[item])
     # Create a figure and a subplot
     fig, ax = plt.subplots()
 
@@ -66,12 +68,11 @@ def find_working():
             # Example condition: color based on even or odd sum of indices + 2 (to start from 2 to 20)
             key_tuple = (i+2, j+2)
             if data[key_tuple]['read_0_q_max']>0.5 or data[key_tuple]['read_1_qb_max']>0.5:
-                graph[i, j] = [0, 0, 1]  # Blue
+                graph[j, i] = [0, 0, 1]  # Blue
             elif data[key_tuple]['write_0_min_write']>0.1 or data[key_tuple]['write_1_max_write']<1.7:
-                graph[i, j] = [1, 0, 0]  # Red
+                graph[j, i] = [1, 0, 0]  # Red
             else:
-                graph[i,j] = [0,1,0]
-
+                graph[j,i] = [0,1,0]
     # Display the grid
     # We use 'nearest' interpolation to show the individual square colors without blurring
     ax.imshow(graph, interpolation='nearest')
@@ -94,7 +95,7 @@ def find_working():
         Patch(facecolor='red', edgecolor='black', label='Write Fails'),
         Patch(facecolor='green', edgecolor='black', label='Works Correctly'),
     ]
-    ax.legend(handles=legend_elements, loc='upper left', title="Legend")
+    ax.legend(handles=legend_elements, loc='upper right', title="Legend")
     plt.show()
 if __name__ == '__main__':
     # Path to the file - adjust the filename as needed
