@@ -1,0 +1,33 @@
+* "simulator" "PrimeSim HSPICE"
+* "version" "U-2023.03 linux64"
+* "format" "HSP"
+* "rundate" "23:57:39 04/27/2024 "
+* "netlist" "full_cell_write.sp "
+* "runtitle" ".include '/home/taf27/hspice/libs/cmos_180nm_l49.lib'"
+* time =    0.            
+* temperature =   25.0000        
+*** BEGIN: Saved Operating Point ***                     
+.option 
++ gmindc=   1.0000p       
+.nodeset
++ and_inv_in =   1.8000        
++ and_inv_in_b =   0.            
++ and_inv_inb =   1.8000        
++ bit =   1.8000        
++ bit_col_sel =   1.0182u       
++ bitb =   1.8000        
++ bitb_col_sel =   1.0182u       
++ col =   0.            
++ col_sel =   0.            
++ col_sel_drain = 137.3088m       
++ data =   0.            
++ datab =   0.            
++ n1 = 100.1741m       
++ n2 =   0.            
++ pc =   0.            
++ q = 662.8013m       
++ qb = 662.8013m       
++ vdd =   1.8000        
++ word =   0.            
++ write =   0.            
+***   END: Saved Operating Point ***                     

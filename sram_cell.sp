@@ -1,4 +1,4 @@
-.include "/home/taf27/hspice/libs/CMOS_180nm_L49.lib"
+$.include "/home/taf27/hspice/libs/CMOS_180nm_L49.lib"
 .SUBCKT SRAM_cell q qb bit bitb word vdd vss W1=11 L1=2 W3=8 L3=2 W5=18 L5=2
 
 M1 q qb vss vss NMOS W=W1*90n L=L1*90n
