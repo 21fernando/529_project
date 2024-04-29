@@ -1,0 +1,38 @@
+****** PrimeSim HSPICE -- U-2023.03 linux64 (Feb 23 2023 8048799) ******
+Input File: full_cell_read.sp
+lic:
+lic: FLEXlm: SDK_12.11.6
+lic: USER:   taf27                HOSTNAME: vlsi-cmp-00.egr.duke.edu
+lic: HOSTID: ffffffff940a6836     PID:      945
+lic: Using FLEXlm license file:
+lic: 27060@license01.egr.duke.edu
+lic: Checkout 1 hspice
+lic: License/Maintenance for hspice will expire on 05-feb-2025/2022.06
+lic: 3(in_use)/50(total) FLOATING license(s) on SERVER 27060@license01.egr.duke.edu
+lic:
+
+ init: begin read circuit files, cpu clock= 1.31E-01
+       option post
+       option probe
+ init: end read circuit files, cpu clock= 1.36E-01 peak memory=     487 mb
+ init: begin check errors, cpu clock= 1.36E-01
+ init: end check errors, cpu clock= 1.45E-01 peak memory=     488 mb
+ init: begin setup matrix, pivot=     0 cpu clock= 1.45E-01
+       establish matrix -- done, cpu clock= 1.45E-01 peak memory=     488 mb
+       re-order matrix -- done, cpu clock= 1.45E-01 peak memory=     488 mb
+ init: end setup matrix, cpu clock= 1.46E-01 peak memory=     488 mb
+ output: full_cell_read.tr
+ sweep: tran tran0    begin, stop_t=  5.50E-07 #sweeps=**** cpu clock= 1.47E-01
+ tran: time= 6.8921E-08 tot_iter=     144 conv_iter=      64 cpu clock= 1.52E-01
+ tran: time= 1.1000E-07 tot_iter=     148 conv_iter=      66 cpu clock= 1.53E-01
+ tran: time= 1.6562E-07 tot_iter=     353 conv_iter=     150 cpu clock= 1.58E-01
+ tran: time= 2.3251E-07 tot_iter=     359 conv_iter=     153 cpu clock= 1.58E-01
+ tran: time= 2.8751E-07 tot_iter=     363 conv_iter=     155 cpu clock= 1.58E-01
+ tran: time= 3.4251E-07 tot_iter=     367 conv_iter=     157 cpu clock= 1.58E-01
+ tran: time= 3.9751E-07 tot_iter=     371 conv_iter=     159 cpu clock= 1.58E-01
+ tran: time= 4.5251E-07 tot_iter=     375 conv_iter=     161 cpu clock= 1.59E-01
+ tran: time= 5.0000E-07 tot_iter=     379 conv_iter=     163 cpu clock= 1.59E-01
+ tran: time= 5.5000E-07 tot_iter=     441 conv_iter=     188 cpu clock= 1.60E-01
+ sweep: tran tran0    end, cpu clock= 1.60E-01 peak memory=     488 mb
+>info:         ***** hspice job concluded
+ lic: Release hspice token(s)

@@ -15,23 +15,23 @@ Vpc pc gnd pwl 0 1.8 10n 1.8 11n 0 t_end 0 (1n+t_end) 1.8
 .param W1=4
 .param W5=2
 X1 q qb bit bitb word vdd gnd SRAM_Cell W1=W1 L1=2 W3=4 L3=2 W5=W5 L5=2
-Cb bit gnd 2p
-Cbb bitb gnd 2p
+Cb bit gnd 2f
+Cbb bitb gnd 2f
 
 *Column precharge transistors
-M7 bit pc vdd vdd PMOS W=360n L=180n
-M8 bitb pc vdd vdd PMOS W=360n L=180n
+M7 vdd vdd bit gnd NMOS W=360n L=180n
+M8 vdd vdd bitb gnd NMOS W=360n L=180n
 
 *Column balance transistor
 Mbal bit pc bitb vdd PMOS W=360n L=180n
 *ask about this one, wont current go through it during a write if it is left on
 
 *Write driver transistor
-M13 bit bit_col_sel col_sel_drain gnd NMOS W=180n L=180n
-M14 bitb bitb_col_sel col_sel_drain gnd NMOS W=180n L=180n
+M13 bit bit_col_sel col_sel_drain gnd NMOS W=540n L=180n
+M14 bitb bitb_col_sel col_sel_drain gnd NMOS W=540n L=180n
 
 *Column select transistor
-M15 col_sel_drain col_sel gnd gnd NMOS W=180n L=180n
+M15 col_sel_drain col_sel gnd gnd NMOS W=540n L=180n
 
 *And gate for bitline 
 Ma1 and_inv_in datab n1 gnd NMOS W=2u L=180n
