@@ -9,7 +9,7 @@
 *DC power supply
 Vdd vdd gnd dc 1.8 
 *Precharge, actiavtes at 10n
-Vpc pc gnd pwl 0 1.8 10n 1.8 11n 0 t_end 0 (1n+t_end) 1.8
+Vpc pc gnd pwl 0 1.8 10n 1.8 11n 0 50n 0 51n 1.8 (1n+t_end) 1.8
 *Write enable, activates at 100n
 Vwrite write gnd pwl 0 0 (100n) 0 (101n) 1.8 500n 1.8 (501n) 0
 *Data, updates at 100n
@@ -34,7 +34,7 @@ Cbb bitb gnd 2f
 X2 bit bitb pc vdd gnd column_pull_up
 
 *Bottom of column circuitry
-X3 bit bitb col write data datab vdd gnd
+X3 bit bitb col write data datab vdd gnd write_driver
 
 .options post probe
 
