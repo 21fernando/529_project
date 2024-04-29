@@ -1,0 +1,11 @@
+# Ignore everything
+*
+
+# But not these files...
+!.gitignore
+!*.py
+!*.sp
+
+# Also, do not ignore directories, as ignoring them would ignore their contents
+!*/
+
