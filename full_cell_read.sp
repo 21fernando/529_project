@@ -15,7 +15,6 @@ Vword word gnd pwl 0 0 (20n) 0 (21n) 1.8 50n 1.8 (51n) 0
 Vcol col gnd pwl 0 1.8 (30n) 1.8 (31n) 0 50n 0 (51n) 1.8
 *Precharge, activates at 10n
 Vpc pc gnd pwl 0 1.8 10n 1.8 11n 0 50n 0 51n 1.8
-*pc pc gnd dc 1.8
 *Sense amp bias supply
 Vsa sa_vcs gnd dc 0.7
 
