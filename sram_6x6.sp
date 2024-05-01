@@ -12,48 +12,85 @@
 Vdd vdd 0 1.8
 Vss gnd 0 0
 .param R_wl=0.5
+.param C_wl=95.8333333333f
 Vwl_0 word_0 0 0
 Rw0_0 word_0 word0_0 R_wl
+Cwl_0_0 word0_0 gnd C_wl
 Rw1_0 word1_0 word0_0 R_wl
+Cwl_1_0 word1_0 gnd C_wl
 Rw2_0 word2_0 word1_0 R_wl
+Cwl_2_0 word2_0 gnd C_wl
 Rw3_0 word3_0 word2_0 R_wl
+Cwl_3_0 word3_0 gnd C_wl
 Rw4_0 word4_0 word3_0 R_wl
+Cwl_4_0 word4_0 gnd C_wl
 Rw5_0 word5_0 word4_0 R_wl
+Cwl_5_0 word5_0 gnd C_wl
 Vwl_1 word_1 0 0
 Rw0_1 word_1 word0_1 R_wl
+Cwl_0_1 word0_1 gnd C_wl
 Rw1_1 word1_1 word0_1 R_wl
+Cwl_1_1 word1_1 gnd C_wl
 Rw2_1 word2_1 word1_1 R_wl
+Cwl_2_1 word2_1 gnd C_wl
 Rw3_1 word3_1 word2_1 R_wl
+Cwl_3_1 word3_1 gnd C_wl
 Rw4_1 word4_1 word3_1 R_wl
+Cwl_4_1 word4_1 gnd C_wl
 Rw5_1 word5_1 word4_1 R_wl
+Cwl_5_1 word5_1 gnd C_wl
 Vwl_2 word_2 0 0
 Rw0_2 word_2 word0_2 R_wl
+Cwl_0_2 word0_2 gnd C_wl
 Rw1_2 word1_2 word0_2 R_wl
+Cwl_1_2 word1_2 gnd C_wl
 Rw2_2 word2_2 word1_2 R_wl
+Cwl_2_2 word2_2 gnd C_wl
 Rw3_2 word3_2 word2_2 R_wl
+Cwl_3_2 word3_2 gnd C_wl
 Rw4_2 word4_2 word3_2 R_wl
+Cwl_4_2 word4_2 gnd C_wl
 Rw5_2 word5_2 word4_2 R_wl
+Cwl_5_2 word5_2 gnd C_wl
 Vwl_3 word_3 0 0
 Rw0_3 word_3 word0_3 R_wl
+Cwl_0_3 word0_3 gnd C_wl
 Rw1_3 word1_3 word0_3 R_wl
+Cwl_1_3 word1_3 gnd C_wl
 Rw2_3 word2_3 word1_3 R_wl
+Cwl_2_3 word2_3 gnd C_wl
 Rw3_3 word3_3 word2_3 R_wl
+Cwl_3_3 word3_3 gnd C_wl
 Rw4_3 word4_3 word3_3 R_wl
+Cwl_4_3 word4_3 gnd C_wl
 Rw5_3 word5_3 word4_3 R_wl
+Cwl_5_3 word5_3 gnd C_wl
 Vwl_4 word_4 0 0
 Rw0_4 word_4 word0_4 R_wl
+Cwl_0_4 word0_4 gnd C_wl
 Rw1_4 word1_4 word0_4 R_wl
+Cwl_1_4 word1_4 gnd C_wl
 Rw2_4 word2_4 word1_4 R_wl
+Cwl_2_4 word2_4 gnd C_wl
 Rw3_4 word3_4 word2_4 R_wl
+Cwl_3_4 word3_4 gnd C_wl
 Rw4_4 word4_4 word3_4 R_wl
+Cwl_4_4 word4_4 gnd C_wl
 Rw5_4 word5_4 word4_4 R_wl
-Vwl_5 word_5 gnd pwl 0 0 (16n) 0 (17n) 1.8 50n 1.8 (51n) 0 
+Cwl_5_4 word5_4 gnd C_wl
+Vwl_5 word_5 gnd pwl 0 0 (41n) 0 (42n) 1.8 44n 1.8 (45n) 0 
 Rw0_5 word_5 word0_5 R_wl
+Cwl_0_5 word0_5 gnd C_wl
 Rw1_5 word1_5 word0_5 R_wl
+Cwl_1_5 word1_5 gnd C_wl
 Rw2_5 word2_5 word1_5 R_wl
+Cwl_2_5 word2_5 gnd C_wl
 Rw3_5 word3_5 word2_5 R_wl
+Cwl_3_5 word3_5 gnd C_wl
 Rw4_5 word4_5 word3_5 R_wl
+Cwl_4_5 word4_5 gnd C_wl
 Rw5_5 word5_5 word4_5 R_wl
+Cwl_5_5 word5_5 gnd C_wl
 *Column access, activates at 110n
 Vcol_write_0 col_write_0 gnd dc 0
 Vcol_read_0 col_read_0 gnd dc 1.8
@@ -70,8 +107,8 @@ Vcol_read_3 col_read_3 gnd dc 1.8
 Vcol_write_4 col_write_4 gnd dc 0
 Vcol_read_4 col_read_4 gnd dc 1.8
 *Column access, activates at 110n
-Vcol_read_5 col_read_5 gnd pwl 0 1.8 (17n) 1.8 (18n) 0 50n 0 (51n) 1.8
-Vcol_write_5 col_write_5 gnd pwl 0 0 (17n) 0 (18n) 1.8 50n 1.8 (51n) 0
+Vcol_write_5 col_write_5 gnd pwl 0 0 (32n) 0 (33n) 1.8 60n 1.8 61n 0
+Vcol_read_5 col_read_5 gnd pwl 0 1.8 (32n) 1.8 (33n) 0 60n 0 (61n) 1.8
 *Precharge, activates at 10n
 Vpc_0 pc_0 gnd dc 1.8
 *Precharge, activates at 10n
@@ -83,11 +120,11 @@ Vpc_3 pc_3 gnd dc 1.8
 *Precharge, activates at 10n
 Vpc_4 pc_4 gnd dc 1.8
 *Precharge, activates at 10n
-Vpc_5 pc_5 gnd pwl 0 1.8 10n 1.8 11n 0 14n 0 15n 1.8
+Vpc_5 pc_5 gnd pwl 0 1.8 5n 1.8 6n 0 15n 0 16n 1.8
 *Sense amp bias supply
 Vsa sa_vcs gnd dc 0.7
 .param R_bl=0.5
-.param C_bl=61.6666666667f
+.param C_bl=63.15f
 Rb_0_0 bit_0_0 bit_0_1 R_bl
 Rbb_0_0 bitb_0_0 bitb_0_1 R_bl
 Cb_0_0 bit_0_0 gnd C_bl
@@ -237,7 +274,7 @@ Vwrite_1 write_1 gnd dc 0
 Vwrite_2 write_2 gnd dc 0
 Vwrite_3 write_3 gnd dc 0
 Vwrite_4 write_4 gnd dc 0
-Vwrite_5 write_5 gnd dc 0
+Vwrite_5 write_5 gnd pwl 0 0 20n 0 21n 1.8 60n 1.8 61n 0
 Vdata_0 data_0 gnd dc 0 
 Vdatab_0 datab_0 gnd dc 1.8
 Vdata_1 data_1 gnd dc 0 
@@ -248,8 +285,8 @@ Vdata_3 data_3 gnd dc 0
 Vdatab_3 datab_3 gnd dc 1.8
 Vdata_4 data_4 gnd dc 0 
 Vdatab_4 datab_4 gnd dc 1.8
-Vdata_5 data_5 gnd dc 0 
-Vdatab_5 datab_5 gnd dc 1.8
+Vdata_5 data_5 gnd pwl 0 1.8 20n 1.8 21n 0 60n 0 61n 1.8
+Vdatab_5 datab_5 gnd pwl 0 0 20n 0 21n 1.8 60n 1.8 61n 0
 .ic q_0_0=0
 .ic qb_0_0=1.8
 .ic q_1_0=0
@@ -380,5 +417,5 @@ Xbr5 bit_5_0 bitb_5_0 col_read_5 sa_vcs sa_out_5 vdd gnd read_driver
 Xbw5 bit_5_0 bitb_5_0 col_write_5 write_5 data_5 datab_5 vdd gnd write_driver
 .options post probe
 .tran 1n 70n uic
-.probe V(bit_5_0) V(bitb_5_0) V(word_5) V(q_5_5) V(qb_5_5) V(sa_out_5) V(pc_5) V(col_read_5) V(col_write_5) V(write_5) V(data_5) V(datab_5)
+.probe I(X5_5.M3) I(X5_5.M4) V(bit_5_0) V(bitb_5_0) V(word_5) V(q_5_5) V(qb_5_5) V(sa_out_5) V(pc_5) V(col_read_5) V(col_write_5) V(write_5) V(data_5) V(datab_5)
 .end

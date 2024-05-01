@@ -1,4 +1,4 @@
-N = 6
+N = 100
 do_read = True
 cell_value = 1.8
 cell_bar_value = 0
@@ -29,7 +29,7 @@ with open(filename, 'w') as file:
             if do_read == 1:
                 file.write("Vwl_{0} word_{0} gnd pwl 0 0 (16n) 0 (17n) 1.8 50n 1.8 (51n) 0 \n".format(row))
             else:
-                file.write("Vwl_{0} word_{0} gnd pwl 0 0 (41n) 0 (42n) 1.8 50n 1.8 (51n) 0 \n".format(row))
+                file.write("Vwl_{0} word_{0} gnd pwl 0 0 (41n) 0 (42n) 1.8 44n 1.8 (45n) 0 \n".format(row))
         for col in range(N):
             #file.write("COL:{0}\n".format(col))
             if col==0:
@@ -61,7 +61,7 @@ with open(filename, 'w') as file:
             if do_read:
                 file.write("Vpc_{0} pc_{0} gnd pwl 0 1.8 10n 1.8 11n 0 14n 0 15n 1.8\n".format(col))
             else:
-                file.write("Vpc_{0} pc_{0} gnd pwl 0 1.8 5n 1.8 6n 0 60n 0 61n 1.8\n".format(col))
+                file.write("Vpc_{0} pc_{0} gnd pwl 0 1.8 5n 1.8 6n 0 15n 0 16n 1.8\n".format(col))
     #Sense amp bias voltage    
     file.write("*Sense amp bias supply\n")
     file.write("Vsa sa_vcs gnd dc 0.7\n")
@@ -114,15 +114,9 @@ with open(filename, 'w') as file:
         file.write("Xt{0} bit_{0}_{1} bitb_{0}_{1} pc_{0} vdd gnd column_pull_up \n".format(col,N))
 
         #Bottom of column circuits
-<<<<<<< HEAD
-        file.write("Xbr{0} bit_{0}_0 bitb_{0}_0 col_{0} sa_vcs sa_out_{0} vdd gnd read_driver \n".format(col))
-        file.write("Xbw{0} bit_{0}_0 bitb_{0}_0 col_{0} write_{0} data_{0} datab_{0} vdd gnd write_driver\n".format(col))
-    file.write(".options post probe\n")   
-=======
         file.write("Xbr{0} bit_{0}_0 bitb_{0}_0 col_read_{0} sa_vcs sa_out_{0} vdd gnd read_driver \n".format(col))
         file.write("Xbw{0} bit_{0}_0 bitb_{0}_0 col_write_{0} write_{0} data_{0} datab_{0} vdd gnd write_driver\n".format(col))
     file.write(".options post probe\n")
->>>>>>> refs/remotes/origin/master
     file.write(".tran 1n 70n uic\n")
-    file.write(".probe V(bit_{1}_0) V(bitb_{1}_0) V(word_{1}) V(q_{1}_{1}) V(qb_{1}_{1}) V(sa_out_{1}) V(pc_{1}) V(col_read_{1}) V(col_write_{1}) V(write_{1}) V(data_{1}) V(datab_{1})\n".format(0,N-1))
+    file.write(".probe I(X5_5.M3) I(X5_5.M4) V(bit_{1}_0) V(bitb_{1}_0) V(word_{1}) V(q_{1}_{1}) V(qb_{1}_{1}) V(sa_out_{1}) V(pc_{1}) V(col_read_{1}) V(col_write_{1}) V(write_{1}) V(data_{1}) V(datab_{1})\n".format(0,N-1))
     file.write(".end\n")
