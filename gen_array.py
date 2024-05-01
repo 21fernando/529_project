@@ -1,5 +1,5 @@
-N = 2
-do_read = False
+N = 6
+do_read = True
 cell_value = 1.8
 cell_bar_value = 0
 data_val = 0
@@ -27,7 +27,7 @@ with open(filename, 'w') as file:
             file.write("Vwl_{0} word_{0} 0 0\n".format(row))
         else:
             if do_read == 1:
-                file.write("Vwl_{0} word_{0} gnd pwl 0 0 (31n) 0 (32n) 1.8 50n 1.8 (51n) 0 \n".format(row))
+                file.write("Vwl_{0} word_{0} gnd pwl 0 0 (16n) 0 (17n) 1.8 50n 1.8 (51n) 0 \n".format(row))
             else:
                 file.write("Vwl_{0} word_{0} gnd pwl 0 0 (41n) 0 (42n) 1.8 50n 1.8 (51n) 0 \n".format(row))
         for col in range(N):
@@ -42,13 +42,15 @@ with open(filename, 'w') as file:
     for col in range(N):
         file.write("*Column access, activates at 110n\n")
         if col != N-1:
-            file.write("Vcol_{0} col_{0} gnd dc 0\n".format(col))
+            file.write("Vcol_write_{0} col_write_{0} gnd dc 0\n".format(col))
+            file.write("Vcol_read_{0} col_read_{0} gnd dc 1.8\n".format(col))
         else:
             if do_read:
-                file.write("Vcol_{0} col_{0} gnd pwl 0 0 (32n) 0 (33n) 1.8 50n 1.8 (51n) 0\n".format(col))
+                file.write("Vcol_read_{0} col_read_{0} gnd pwl 0 1.8 (17n) 1.8 (18n) 0 50n 0 (51n) 1.8\n".format(col))
+                file.write("Vcol_write_{0} col_write_{0} gnd pwl 0 0 (17n) 0 (18n) 1.8 50n 1.8 (51n) 0\n".format(col))
             else:
-		file.write("Vcol_{0} col_{0} gnd pwl 0 0 (32n) 0 (33n) 1.8 60n 1.8 61n 0\n".format(col))
-            #   file.write("Vcol_{0} col_{0} gnd pwl 0 1.8 (32n) 1.8 (33n) 0 50n 0 (51n) 1.8\n".format(col))
+		file.write("Vcol_write_{0} col_write_{0} gnd pwl 0 0 (32n) 0 (33n) 1.8 60n 1.8 61n 0\n".format(col))
+                file.write("Vcol_read_{0} col_read_{0} gnd pwl 0 1.8 (32n) 1.8 (33n) 0 60n 0 (61n) 1.8\n".format(col))
 
     #Generating Precharge selects:
     for col in range(N):
@@ -57,9 +59,9 @@ with open(filename, 'w') as file:
             file.write("Vpc_{0} pc_{0} gnd dc 1.8\n".format(col))
         else:
             if do_read:
-                file.write("Vpc_{0} pc_{0} gnd pwl 0 1.8 10n 1.8 11n 0 30n 0 31n 1.8\n".format(col))
+                file.write("Vpc_{0} pc_{0} gnd pwl 0 1.8 10n 1.8 11n 0 14n 0 15n 1.8\n".format(col))
             else:
-                file.write("Vpc_{0} pc_{0} gnd pwl 0 1.8 5n 1.8 6n 0 10n 0 15n 1.8\n".format(col))
+                file.write("Vpc_{0} pc_{0} gnd pwl 0 1.8 5n 1.8 6n 0 60n 0 61n 1.8\n".format(col))
     #Sense amp bias voltage    
     file.write("*Sense amp bias supply\n")
     file.write("Vsa sa_vcs gnd dc 0.7\n")
@@ -100,20 +102,27 @@ with open(filename, 'w') as file:
 	    else:            
 		file.write(".ic q_{1}_{0}=0\n".format(row,col))
 		file.write(".ic qb_{1}_{0}=1.8\n".format(row,col))
-
+    file.write(".param W1=4\n")
+    file.write(".param W5=2\n")
     #Instantiating the Cells
     for row in range(N):
         for col in range(N):
-            file.write("X{1}_{0} q_{1}_{0} qb_{1}_{0} bit_{1}_{0} bitb_{1}_{0} word{1}_{0} vdd gnd SRAM_cell\n".format(row, col))
+            file.write("X{1}_{0} q_{1}_{0} qb_{1}_{0} bit_{1}_{0} bitb_{1}_{0} word{1}_{0} vdd gnd SRAM_cell W1=W1 L1=2 W3=4 L3=2 W5=W5 L5=2 \n".format(row, col))
 
     for col in range(N):
         #Top of colum circuits
         file.write("Xt{0} bit_{0}_{1} bitb_{0}_{1} pc_{0} vdd gnd column_pull_up \n".format(col,N))
 
         #Bottom of column circuits
+<<<<<<< HEAD
         file.write("Xbr{0} bit_{0}_0 bitb_{0}_0 col_{0} sa_vcs sa_out_{0} vdd gnd read_driver \n".format(col))
         file.write("Xbw{0} bit_{0}_0 bitb_{0}_0 col_{0} write_{0} data_{0} datab_{0} vdd gnd write_driver\n".format(col))
     file.write(".options post probe\n")   
+=======
+        file.write("Xbr{0} bit_{0}_0 bitb_{0}_0 col_read_{0} sa_vcs sa_out_{0} vdd gnd read_driver \n".format(col))
+        file.write("Xbw{0} bit_{0}_0 bitb_{0}_0 col_write_{0} write_{0} data_{0} datab_{0} vdd gnd write_driver\n".format(col))
+    file.write(".options post probe\n")
+>>>>>>> refs/remotes/origin/master
     file.write(".tran 1n 70n uic\n")
-    file.write(".probe V(bit_{1}_0) V(bitb_{1}_0) V(word_{1}) V(q_{1}_{1}) V(qb_{1}_{1}) V(sa_out_{1}) V(pc_{1}) V(col_{1}) V(write_{1}) V(data_{1}) V(datab_{1})\n".format(0,N-1))
+    file.write(".probe V(bit_{1}_0) V(bitb_{1}_0) V(word_{1}) V(q_{1}_{1}) V(qb_{1}_{1}) V(sa_out_{1}) V(pc_{1}) V(col_read_{1}) V(col_write_{1}) V(write_{1}) V(data_{1}) V(datab_{1})\n".format(0,N-1))
     file.write(".end\n")
