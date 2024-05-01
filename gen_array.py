@@ -28,7 +28,7 @@ with open(filename, 'w') as file:
             if do_read == 1:
                 file.write("Vwl_{0} word_{0} gnd pwl 0 0 (31n) 0 (32n) 1.8 50n 1.8 (51n) 0 \n".format(row))
             else:
-                file.write("Vwl_{0} word_{0} gnd pwl 0 0 (31n) 0 (32n) 1.8 50n 1.8 (51n) 0 \n".format(row))
+                file.write("Vwl_{0} word_{0} gnd pwl 0 0 (41n) 0 (42n) 1.8 50n 1.8 (51n) 0 \n".format(row))
         for col in range(N):
             #file.write("COL:{0}\n".format(col))
             if col==0:
@@ -43,9 +43,10 @@ with open(filename, 'w') as file:
             file.write("Vcol_{0} col_{0} gnd dc 0\n".format(col))
         else:
             if do_read:
-                file.write("Vcol_{0} col_{0} gnd pwl 0 1.8 (32n) 1.8 (33n) 0 50n 0 (51n) 1.8\n".format(col))
+                file.write("Vcol_{0} col_{0} gnd pwl 0 0 (32n) 0 (33n) 1.8 50n 1.8 (51n) 0\n".format(col))
             else:
-                file.write("Vcol_{0} col_{0} gnd pwl 0 1.8 (32n) 1.8 (33n) 0 50n 0 (51n) 1.8\n".format(col))
+		file.write("Vcol_{0} col_{0} gnd pwl 0 0 (32n) 0 (33n) 1.8 60n 1.8 61n 0\n".format(col))
+            #   file.write("Vcol_{0} col_{0} gnd pwl 0 1.8 (32n) 1.8 (33n) 0 50n 0 (51n) 1.8\n".format(col))
 
     #Generating Precharge selects:
     for col in range(N):
@@ -56,7 +57,7 @@ with open(filename, 'w') as file:
             if do_read:
                 file.write("Vpc_{0} pc_{0} gnd pwl 0 1.8 10n 1.8 11n 0 30n 0 31n 1.8\n".format(col))
             else:
-                file.write("Vpc_{0} pc_{0} gnd pwl 0 1.8 10n 1.8 11n 0 30n 0 31n 1.8\n".format(col))
+                file.write("Vpc_{0} pc_{0} gnd pwl 0 1.8 5n 1.8 6n 0 10n 0 15n 1.8\n".format(col))
     #Sense amp bias voltage    
     file.write("*Sense amp bias supply\n")
     file.write("Vsa sa_vcs gnd dc 0.7\n")
@@ -74,15 +75,15 @@ with open(filename, 'w') as file:
     #Write signals
     for col in range(N):
         if col == N-1 and do_read == False:
-            file.write("Vwrite_{0} write_{0} gnd pwl 0 0 30n 0 31n 1.8 50n 1.8 51n 0\n".format(col))
+            file.write("Vwrite_{0} write_{0} gnd pwl 0 0 20n 0 21n 1.8 60n 1.8 61n 0\n".format(col))
         else:
-            file.write("Vwrite_{0} write_{0} gnd dc 0")
+            file.write("Vwrite_{0} write_{0} gnd dc 0\n".format(col))
 
     #Data signals
     for col in range(N):
         if col == N-1 and do_read == False:
-            file.write("Vdata_{0} data_{0} gnd pwl 0 {1} 30n {1} 31n {2} 50n {2} 51n {1}\n".format(col, data_bar_val, data_val))
-            file.write("Vdatab_{0} datab_{0} gnd pwl 0 {1} 30n {1} 31n {2} 50n {2} 51n {1}\n".format(col, data_val, data_bar_val))
+            file.write("Vdata_{0} data_{0} gnd pwl 0 {1} 20n {1} 21n {2} 60n {2} 61n {1}\n".format(col, data_bar_val, data_val))
+            file.write("Vdatab_{0} datab_{0} gnd pwl 0 {1} 20n {1} 21n {2} 60n {2} 61n {1}\n".format(col, data_val, data_bar_val))
         else:
             file.write("Vdata_{0} data_{0} gnd dc 0 \n".format(col))
             file.write("Vdatab_{0} datab_{0} gnd dc 1.8\n".format(col))
@@ -94,8 +95,9 @@ with open(filename, 'w') as file:
             if row == N-1 and col == N-1:
                 file.write(".ic q_{1}_{0}={2}\n".format(row,col, cell_value))
                 file.write(".ic qb_{1}_{0}={2}\n".format(row,col, cell_bar_value))
-            file.write(".ic q_{1}_{0}=0\n".format(row,col))
-            file.write(".ic qb_{1}_{0}=1.8\n".format(row,col))
+	    else:            
+		file.write(".ic q_{1}_{0}=0\n".format(row,col))
+		file.write(".ic qb_{1}_{0}=1.8\n".format(row,col))
 
     #Instantiating the Cells
     for row in range(N):
@@ -111,5 +113,5 @@ with open(filename, 'w') as file:
         file.write("Xbw{0} bit_{0}_0 bitb_{0}_0 col_{0} write_{0} data_{0} datab_{0} vdd gnd write_driver\n".format(col))
     file.write(".options post probe\n")
     file.write(".tran 1n 70n uic\n")
-    file.write(".probe V(bit_{1}_0) V(bitb_{1}_0) V(word_{1}) V(q_{1}_{1}) V(qb_{1}_{1}) V(sa_out_{1}) V(pc_{1}) V(col_{1})".format(0,N-1))
+    file.write(".probe V(bit_{1}_0) V(bitb_{1}_0) V(word_{1}) V(q_{1}_{1}) V(qb_{1}_{1}) V(sa_out_{1}) V(pc_{1}) V(col_{1}) V(write_{1}) V(data_{1}) V(datab_{1})\n".format(0,N-1))
     file.write(".end\n")
