@@ -27,7 +27,7 @@ with open(filename, 'w') as file:
             if col==0:
                 file.write("Rw{1}_{0} word_{0} word{1}_{0} R_wl\n".format(row, col))
             else:
-                file.write("Rw{1}_{0} word{1}_{0} word{2}_{0} R_wl\n".format(row, col-1, col))
+                file.write("Rw{2}_{0} word{2}_{0} word{1}_{0} R_wl\n".format(row, col-1, col))
 
     #Generating Column selects:
     for col in range(N):

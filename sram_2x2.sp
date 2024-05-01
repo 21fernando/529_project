@@ -14,10 +14,10 @@ Vss gnd 0 0
 .param R_wl=0.5
 Vwl_0 word_0 0 0
 Rw0_0 word_0 word0_0 R_wl
-Rw0_0 word0_0 word1_0 R_wl
+Rw1_0 word1_0 word0_0 R_wl
 Vwl_1 word_1 gnd pulse 0 1.8 20n 1n 1n 100n 200n 
 Rw0_1 word_1 word0_1 R_wl
-Rw0_1 word0_1 word1_1 R_wl
+Rw1_1 word1_1 word0_1 R_wl
 *Column access, activates at 110n
 Vcol_0 col_0 gnd dc 0
 *Column access, activates at 110n
@@ -64,4 +64,4 @@ Xt1 bit_1_2 bitb_1_2 pc_1 vdd gnd column_pull_up
 Xb1 bit_1_0 bitb_1_0 col_1 sa_vcs sa_out_1 vdd gnd read_driver 
 .options post probe
 .tran 1n 200n uic
-.probe V(bit_1_0) V(bitb_1_0) V(word1) V(q1_1) V(qb1_1).end
+.probe V(bit_1_0) V(bitb_1_0) V(word1) V(q1_1) V(qb1_1) V(sa_out_1) V(pc_1) V(col_1).end
