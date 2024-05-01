@@ -21,7 +21,7 @@ with open(filename, 'w') as file:
         if row != N-1:
             file.write("Vwl_{0} word_{0} 0 0\n".format(row))
         else:
-            file.write("Vwl_{0} word_{0} gnd pulse 0 1.8 20n 1n 1n 100n 200n \n".format(row))
+            file.write("Vwl_{0} word_{0} gnd pwl 0 0 (31n) 0 (32n) 1.8 50n 1.8 (51n) 0 \n".format(row))
         for col in range(N):
             #file.write("COL:{0}\n".format(col))
             if col==0:
@@ -35,7 +35,7 @@ with open(filename, 'w') as file:
         if col != N-1:
             file.write("Vcol_{0} col_{0} gnd dc 0\n".format(col))
         else:
-            file.write("Vcol_{0} col_{0} gnd pwl 0 1.8 (30n) 1.8 (31n) 0 50n 0 (51n) 1.8\n".format(col))
+            file.write("Vcol_{0} col_{0} gnd pwl 0 1.8 (32n) 1.8 (33n) 0 50n 0 (51n) 1.8\n".format(col))
 
     #Generating Precharge selects:
     for col in range(N):
@@ -43,7 +43,7 @@ with open(filename, 'w') as file:
         if col != N-1:
             file.write("Vpc_{0} pc_{0} gnd dc 1.8\n".format(col))
         else:
-            file.write("Vpc_{0} pc_{0} gnd pwl 0 1.8 10n 1.8 11n 0 50n 0 51n 1.8\n".format(col))
+            file.write("Vpc_{0} pc_{0} gnd pwl 0 1.8 10n 1.8 11n 0 30n 0 31n 1.8\n".format(col))
 
     #Sense amp bias voltage    
     file.write("*Sense amp bias supply\n")
@@ -51,7 +51,7 @@ with open(filename, 'w') as file:
 
     #Initializing bitlines
     file.write(".param R_bl=0.5\n")
-    file.write(".param C_bl=1.3f\n")
+    file.write(".param C_bl={0}f\n".format(370.0/N))
     for col in range(N):
         for row in range(N):
             file.write("Rb_{1}_{0} bit_{1}_{0} bit_{1}_{2} R_bl\n".format(row, col,row+1))
@@ -78,6 +78,6 @@ with open(filename, 'w') as file:
         file.write("Xb{0} bit_{0}_0 bitb_{0}_0 col_{0} sa_vcs sa_out_{0} vdd gnd read_driver \n".format(col))
      
     file.write(".options post probe\n")
-    file.write(".tran 1n 200n uic\n")
-    file.write(".probe V(bit_{1}_0) V(bitb_{1}_0) V(word{1}) V(q{1}_{1}) V(qb{1}_{1}) V(sa_out_{1}) V(pc_{1}) V(col_{1})".format(0,N-1))
+    file.write(".tran 1n 70n uic\n")
+    file.write(".probe V(bit_{1}_0) V(bitb_{1}_0) V(word_{1}) V(q_{1}_{1}) V(qb_{1}_{1}) V(sa_out_{1}) V(pc_{1}) V(col_{1})".format(0,N-1))
     file.write(".end\n")

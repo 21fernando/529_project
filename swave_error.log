@@ -1,6 +1,6 @@
 BUILD TIMESTAMP: Thu Dec 14 10:29:08 GMT 2023
 
-DATE: Tuesday 30 April 2024 20:55:22.045
+DATE: Wednesday 01 May 2024 02:25:16.068
 THR: JwdbTclThread
 java.util.ConcurrentModificationException
 	at java.base/java.util.Hashtable$Enumerator.next(Hashtable.java:1498)
@@ -11,16 +11,16 @@ java.util.ConcurrentModificationException
 	at java.desktop/javax.swing.plaf.nimbus.NimbusStyle.getInsets(NimbusStyle.java:492)
 	at java.desktop/javax.swing.plaf.synth.SynthStyle.installDefaults(SynthStyle.java:915)
 	at java.desktop/javax.swing.plaf.synth.SynthLookAndFeel.updateStyle(SynthLookAndFeel.java:297)
-	at java.desktop/javax.swing.plaf.synth.SynthLabelUI.updateStyle(SynthLabelUI.java:76)
-	at java.desktop/javax.swing.plaf.synth.SynthLabelUI.propertyChange(SynthLabelUI.java:303)
+	at java.desktop/javax.swing.plaf.synth.SynthButtonUI.updateStyle(SynthButtonUI.java:88)
+	at java.desktop/javax.swing.plaf.synth.SynthButtonUI.propertyChange(SynthButtonUI.java:564)
 	at java.desktop/java.beans.PropertyChangeSupport.fire(PropertyChangeSupport.java:343)
 	at java.desktop/java.beans.PropertyChangeSupport.firePropertyChange(PropertyChangeSupport.java:335)
 	at java.desktop/java.beans.PropertyChangeSupport.firePropertyChange(PropertyChangeSupport.java:268)
 	at java.desktop/java.awt.Component.firePropertyChange(Component.java:8716)
 	at java.desktop/javax.swing.JComponent.putClientProperty(JComponent.java:4180)
 	at com.mentor.jeda.comps.JetCustomLaF.customizeComponent(JetCustomLaF.java:13695)
-	at com.mentor.jeda.comps.JetCustomLaF$JetJLabel.<init>(JetCustomLaF.java:3214)
-	at com.mentor.jeda.wve.WveLongCmd$WaitDialog.a(WveLongCmd.java:280)
+	at com.mentor.jeda.comps.JetCustomLaF$JetJButton.<init>(JetCustomLaF.java:6825)
+	at com.mentor.jeda.wve.WveLongCmd$WaitDialog.a(WveLongCmd.java:284)
 	at com.mentor.jeda.wve.WveLongCmd$WaitDialog.<init>(WveLongCmd.java:271)
 	at com.mentor.jeda.wve.WveLongCmd.a(WveLongCmd.java:243)
 	at com.mentor.jeda.wve.WveLongCmd.startImpl(WveLongCmd.java:133)
