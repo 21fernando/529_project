@@ -2,6 +2,7 @@ filename = "sram_256x256.sp"
 
 with open(filename, 'w') as file:
     file.write("* 256x256 SRAM Array Netlist\n")
+    file.write(".include \"/home/taf27/hspice/libs/CMOS_180nm_L49.lib\"\n")
     file.write(".include \"sram_cell.sp\"\n")
     file.write(".include \"write_driver.sp\"\n")
     file.write(".include \"read_driver.sp\"\n")
@@ -13,7 +14,7 @@ with open(filename, 'w') as file:
     file.write("Vss gnd 0 0\n")
 
     # Generating the Wordlines
-    file.write(".param R_wl 0.5\n")
+    file.write(".param R_wl=0.5\n")
     for row in range(256):
         if row != 7:
             file.write("Vwl_{0} word_{0} 0 0\n".format(row))
@@ -46,12 +47,12 @@ with open(filename, 'w') as file:
     file.write("Vsa sa_vcs gnd dc 0.7\n")
 
     #Initializing bitlines
-    file.write(".param R_bl 0.5\n")
-    file.write(".param C_bl 1.3f\n")
+    file.write(".param R_bl=0.5\n")
+    file.write(".param C_bl=1.3f\n")
     for col in range(256):
         for row in range(256):
-            file.write("Rb bit_{1}_{0} bit_{3}_{2} \n".format(row, col,row+1,col+1))
-            file.write("Rbb bitb_{1}_{0} bitb_{3}_{2} \n".format(row, col,row+1,col+1))
+            file.write("Rb_{1}_{0} bit_{1}_{0} bit_{3}_{2} \n".format(row, col,row+1,col+1))
+            file.write("Rbb_{1}_{0} bitb_{1}_{0} bitb_{3}_{2} \n".format(row, col,row+1,col+1))
             file.write("Cb_{1}_{0} bit_{1}_{0} gnd C_bl\n".format(row, col))
             file.write("Cbb_{1}_{0} bitb_{1}_{0} gnd C_bl\n".format(row, col))
 

@@ -1,4 +1,5 @@
 * 256x256 SRAM Array Netlist
+.include "/home/taf27/hspice/libs/CMOS_180nm_L49.lib"
 .include "sram_cell.sp"
 .include "write_driver.sp"
 .include "read_driver.sp"
@@ -9,7 +10,6 @@
 *++++++++++++SOURCES++++++++++++++
 *+++++++++++++++++++++++++++++++++
 Vdd vdd 0 1.8
-Vss gnd 0 0
 Vwl0 word0 0 0
 Vwl1 word1 0 0
 Vwl2 word2 0 0
@@ -17,7 +17,7 @@ Vwl3 word3 0 0
 Vwl4 word4 0 0
 Vwl5 word5 0 0
 Vwl6 word6 0 0
-Vword word gnd pwl 0 0 (20n) 0 (21n) 1.8 50n 1.8 (51n) 0
+Vword word7 gnd pwl 0 0 (20n) 0 (21n) 1.8 50n 1.8 (51n) 0
 Vwl8 word8 0 0
 Vwl9 word9 0 0
 Vwl10 word10 0 0
@@ -1064,4 +1064,5 @@ Xsram255 q255 qb255 bit bitb word255 vdd gnd SRAM_cell W1=W1 L1=2 W3=4 L3=2 W5=W
 *+++++++++++++++++++++++++++++++++
 .options post probe
 .tran 1n 200n uic
-.probe V(bit) V(bitb) V(word7) V(q7) V(qb7).end
+.probe V(bit) V(bitb) V(word7) V(q7) V(qb7) V(sa_out) V(pc) V(col)
+.end

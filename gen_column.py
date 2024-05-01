@@ -2,6 +2,7 @@ filename = "column_256.sp"
 
 with open(filename, 'w') as file:
     file.write("* 256x256 SRAM Array Netlist\n")
+    file.write(".include \"/home/taf27/hspice/libs/CMOS_180nm_L49.lib\"\n")
     file.write(".include \"sram_cell.sp\"\n")
     file.write(".include \"write_driver.sp\"\n")
     file.write(".include \"read_driver.sp\"\n")
@@ -10,14 +11,13 @@ with open(filename, 'w') as file:
     file.write("*++++++++++++SOURCES++++++++++++++\n")
     file.write("*+++++++++++++++++++++++++++++++++\n")
     file.write("Vdd vdd 0 1.8\n")
-    file.write("Vss gnd 0 0\n")
 
     # Generating the Wordlines
     for i in range(256):
         if (i != 7):
             file.write("Vwl{0} word{0} 0 0\n".format(i))
         else:
-            file.write("Vword word gnd pwl 0 0 (20n) 0 (21n) 1.8 50n 1.8 (51n) 0\n".format(i))
+            file.write("Vword word{0} gnd pwl 0 0 (20n) 0 (21n) 1.8 50n 1.8 (51n) 0\n".format(i))
 
     file.write("*Column access, activates at 110n\n")
     file.write("Vcol col gnd pwl 0 1.8 (30n) 1.8 (31n) 0 50n 0 (51n) 1.8\n")
@@ -60,5 +60,5 @@ with open(filename, 'w') as file:
     file.write("*+++++++++++++++++++++++++++++++++\n")
     file.write(".options post probe\n")
     file.write(".tran 1n 200n uic\n")
-    file.write(".probe V(bit) V(bitb) V(word7) V(q7) V(qb7)")
+    file.write(".probe V(bit) V(bitb) V(word7) V(q7) V(qb7) V(sa_out) V(pc) V(col)\n")
     file.write(".end\n")
